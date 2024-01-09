@@ -28,6 +28,8 @@
 void initialize();
 void routine1_vec(float alpha, float beta);
 void routine2_vec(float alpha, float beta);
+void routine1(float alpha, float beta);
+void routine2(float alpha, float beta);
 
 __declspec(align(64)) float  y[M], z[M];
 __declspec(align(64)) float A[N][N], x[N], w[N];
@@ -57,8 +59,6 @@ int main() {
 
     run_time = omp_get_wtime() - start_time; //end timer
     printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS2) / ((double)run_time / TIMES2));
-
-
 
     return 0;
 }
@@ -129,6 +129,7 @@ void routine1_vec(float alpha, float beta) {
     }
 }
 
+
 void routine2_vec(float alpha, float beta) {
 
     __m256 alpha_vec = _mm256_set1_ps(alpha);
@@ -155,7 +156,4 @@ void routine2_vec(float alpha, float beta) {
     }
 
 }
-
-
-
 
