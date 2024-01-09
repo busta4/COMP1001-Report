@@ -88,8 +88,27 @@ void initialize() {
 
 }
 
+void routine1(float alpha, float beta) {
+
+    unsigned int i;
 
 
+    for (i = 0; i < M; i++)
+        y[i] = alpha * y[i] + beta * z[i];
+
+}
+
+void routine2(float alpha, float beta) {
+
+    unsigned int i, j;
+
+
+    for (i = 0; i < N; i++)
+        for (j = 0; j < N; j++)
+            w[i] = w[i] - beta + alpha * A[i][j] * x[j];
+
+
+}
 
 void routine1_vec(float alpha, float beta) {
     
@@ -102,21 +121,38 @@ void routine1_vec(float alpha, float beta) {
         __m256 y_vec = _mm256_load_ps(&y[i]);
         __m256 z_vec = _mm256_load_ps(&z[i]);
 
+        //alpha* y[i] + beta * z[i]
         __m256 result = _mm256_add_ps(_mm256_mul_ps(alpha_vec, y_vec), _mm256_mul_ps(beta_vec, z_vec));
 
+        //store result to y[i]
         _mm256_store_ps(&y[i], result);
     }
 }
 
 void routine2_vec(float alpha, float beta) {
 
+    __m256 alpha_vec = _mm256_set1_ps(alpha);
+    __m256 beta_vec = _mm256_set1_ps(beta);
     unsigned int i, j;
 
 
-    for (i = 0; i < N; i++)
-        for (j = 0; j < N; j++)
-            w[i] = w[i] - beta + alpha * A[i][j] * x[j];
+    for (i = 0; i < N; i++) {
+        __m256 w_vec = _mm256_loadu_ps(&w[i]);
+        for (j = 0; j < N; j++) {
+            //w[i] = w[i] - beta + alpha * A[i][j] * x[j];
+            __m256 A_vec = _mm256_loadu_ps(&A[i][j]);
+            __m256 x_vec = _mm256_loadu_ps(&x[j]);
 
+            //alpha * A[i][j] * x[j]
+            __m256 alpha_Ax = _mm256_mul_ps(alpha_vec, _mm256_mul_ps(A_vec, x_vec));
+
+            //w[i] - beta + alpha * A[i][j] * x[j]
+            __m256 result = _mm256_add_ps(_mm256_sub_ps(w_vec, beta_vec), alpha_Ax);
+
+            //store result to w[i]
+            _mm256_store_ps(&w[i], result);
+        }
+    }
 
 }
 
