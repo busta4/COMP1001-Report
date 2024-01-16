@@ -26,9 +26,9 @@ void openfile(const char* filename, FILE** finput);
 int getint(FILE* fp); 
 
 //CRITICAL POINT: images' paths - You need to change these paths
-#define IN "C:\\Users\\busta\\Desktop\\Coursework\\COMP1001Q3b\\COMP1001Q3b\\input_images\\a%d.pgm"
-#define OUT "C:\\Users\\busta\\Desktop\\Coursework\\COMP1001Q3b\\COMP1001Q3b\\output_images\\blurred%d.pgm"
-#define OUT2 "C:\\Users\\busta\\Desktop\\Coursework\\COMP1001Q3b\\COMP1001Q3b\\output_images\\edge_detection%d.pgm"
+#define IN "C:\\Users\\busta\\OneDrive\\Documents\\GitHub\\COMP1001-Report\\COMP1001Q3b\\COMP1001Q3b\\input_images\\a%d.pgm"
+#define OUT "C:\\Users\\busta\\OneDrive\\Documents\\GitHub\\COMP1001-Report\\COMP1001Q3b\\COMP1001Q3b\\output_images\\blurred%d.pgm"
+#define OUT2 "C:\\Users\\busta\\OneDrive\\Documents\\GitHub\\COMP1001-Report\\COMP1001Q3b\\COMP1001Q3b\\output_images\\edge_detection%d.pgm"
 
 //IMAGE DIMENSIONS
 int M = 512; //cols

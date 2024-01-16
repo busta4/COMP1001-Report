@@ -1,22 +1,7 @@
 ﻿  COMP1001Q3b.cpp
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(71,13): warning C4129: 'O': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(71,13): warning C4129: 'D': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(71,13): warning C4129: 'G': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(71,13): warning C4129: 'C': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(71,13): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(76,15): warning C4129: 'O': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(76,15): warning C4129: 'D': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(76,15): warning C4129: 'G': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(76,15): warning C4129: 'C': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(76,15): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(77,15): warning C4129: 'O': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(77,15): warning C4129: 'D': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(77,15): warning C4129: 'G': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(77,15): warning C4129: 'C': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(77,15): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(176,39): warning C4474: 'fscanf_s' : too many arguments passed for format string
-  C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(176,39):
+C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(214,39): warning C4474: 'fscanf_s' : too many arguments passed for format string
+  C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(214,39):
   placeholders and their parameters expect 1 variadic arguments, but 2 were provided
   
-C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(151,6): warning C4101: 'c': unreferenced local variable
+C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\COMP1001Q3b\COMP1001Q3b.cpp(184,6): warning C4101: 'c': unreferenced local variable
   COMP1001Q3b.vcxproj -> C:\Users\busta\OneDrive\Documents\GitHub\COMP1001-Report\COMP1001Q3b\x64\Debug\COMP1001Q3b.exe
