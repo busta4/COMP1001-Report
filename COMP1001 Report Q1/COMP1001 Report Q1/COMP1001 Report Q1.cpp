@@ -46,7 +46,7 @@ int main() {
     start_time = omp_get_wtime(); //start timer
 
     for (t = 0; t < TIMES1; t++)
-        routine1_vec(alpha, beta);
+        routine1(alpha, beta);
 
     run_time = omp_get_wtime() - start_time; //end timer
     printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS1) / ((double)run_time / TIMES1));
@@ -55,10 +55,31 @@ int main() {
     start_time = omp_get_wtime(); //start timer
 
     for (t = 0; t < TIMES2; t++)
-        routine2_vec(alpha, beta);
+        routine2(alpha, beta);
 
     run_time = omp_get_wtime() - start_time; //end timer
     printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS2) / ((double)run_time / TIMES2));
+
+    printf("\nRoutine1_vec:");
+    start_time = omp_get_wtime(); //start timer
+
+    for (t = 0; t < TIMES1; t++)
+        routine1_vec(alpha, beta);
+
+    run_time = omp_get_wtime() - start_time; //end timer
+    printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS1) / ((double)run_time / TIMES1));
+
+    printf("\nRoutine2_vec:");
+    start_time = omp_get_wtime(); //start timer
+
+    for (t = 0; t < TIMES1; t++)
+        routine2_vec(alpha, beta);
+
+    run_time = omp_get_wtime() - start_time; //end timer
+    printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS1) / ((double)run_time / TIMES1));
+
+
+
 
     return 0;
 }
@@ -129,31 +150,36 @@ void routine1_vec(float alpha, float beta) {
     }
 }
 
-
 void routine2_vec(float alpha, float beta) {
 
     __m256 alpha_vec = _mm256_set1_ps(alpha);
     __m256 beta_vec = _mm256_set1_ps(beta);
     unsigned int i, j;
 
-
     for (i = 0; i < N; i++) {
         __m256 w_vec = _mm256_loadu_ps(&w[i]);
-        for (j = 0; j < N; j++) {
-            //w[i] = w[i] - beta + alpha * A[i][j] * x[j];
-            __m256 A_vec = _mm256_loadu_ps(&A[i][j]);
-            __m256 x_vec = _mm256_loadu_ps(&x[j]);
+        for (j = 0; j < N; j += 8) {
+            //Load A[i][j:j+7] and x[j:j+7]
+            __m256 A_vec0 = _mm256_loadu_ps(&A[i][j]);
+            __m256 A_vec1 = _mm256_loadu_ps(&A[i][j + 4]);
+            __m256 x_vec0 = _mm256_loadu_ps(&x[j]);
+            __m256 x_vec1 = _mm256_loadu_ps(&x[j + 4]);
 
-            //alpha * A[i][j] * x[j]
-            __m256 alpha_Ax = _mm256_mul_ps(alpha_vec, _mm256_mul_ps(A_vec, x_vec));
+            //alpha * A[i][j:j+7] * x[j:j+7]
+            __m256 alpha_Ax0 = _mm256_mul_ps(alpha_vec, _mm256_mul_ps(A_vec0, x_vec0));
+            __m256 alpha_Ax1 = _mm256_mul_ps(alpha_vec, _mm256_mul_ps(A_vec1, x_vec1));
 
-            //w[i] - beta + alpha * A[i][j] * x[j]
-            __m256 result = _mm256_add_ps(_mm256_sub_ps(w_vec, beta_vec), alpha_Ax);
+            // Combine results
+            __m256 alpha_Ax_combined = _mm256_add_ps(alpha_Ax0, alpha_Ax1);
 
-            //store result to w[i]
-            _mm256_store_ps(&w[i], result);
+            //w[i] - beta + alpha * A[i][j:j+7] * x[j:j+7]
+            __m256 result = _mm256_add_ps(_mm256_sub_ps(w_vec, beta_vec), alpha_Ax_combined);
+
+            // Store the result back to w[i]
+            _mm256_storeu_ps(&w[i], result);
+
+            // Move to the next set
+            w_vec = _mm256_loadu_ps(&w[i + 8]);
         }
     }
-
 }
-
